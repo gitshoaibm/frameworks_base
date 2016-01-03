@@ -5341,6 +5341,12 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_CLOCK_SELECTION = "lockscreen_clock_selection";
+        /**
+         * Change fonts for the system lockscreen clock widget
+         *
+         * @hide
+         */
+        public static final String LOCK_CLOCK_FONTS = "lock_clock_fonts";
 
         /**
          * Whether to enable OmniSwitch as recents implementation.

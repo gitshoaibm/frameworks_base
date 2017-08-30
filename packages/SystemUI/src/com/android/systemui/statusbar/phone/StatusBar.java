@@ -1471,6 +1471,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                 setMediaPlaying();
             }
             mNavigationBar.setCurrentSysuiVisibility(mSystemUiVisibility);
+            mNavigationBar.setOmniSwitchEnabled(mOmniSwitchRecents);
         });
     }
 
@@ -7031,7 +7032,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                 updateKeyguardStatusSettings();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.RECENTS_OMNI_SWITCH_ENABLED))) {
-                updateRecentsMode();
+                updateOmniSwitch();
             }
         }
 
@@ -7047,6 +7048,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             updateBatterySettings();
             updateTickerAnimation();
             updateKeyguardStatusSettings();
+            updateOmniSwitch();
         }
     }
 
@@ -7088,6 +7090,14 @@ public class StatusBar extends SystemUI implements DemoMode,
         final String blackString = Settings.System.getString(mContext.getContentResolver(),
                     Settings.System.HEADS_UP_BLACKLIST_VALUES);
         splitAndAddToArrayList(mBlacklist, blackString, "\\|");
+    }
+
+    private void updateOmniSwitch() {
+        mOmniSwitchRecents = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.RECENTS_OMNI_SWITCH_ENABLED, 0, mCurrentUserId) == 1;
+        if (mNavigationBar != null) {
+            mNavigationBar.setOmniSwitchEnabled(mOmniSwitchRecents);
+        }
     }
 
     private void setForceAmbient() {

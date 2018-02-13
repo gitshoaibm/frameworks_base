@@ -17,6 +17,7 @@ package com.android.systemui;
 
 import static android.provider.Settings.System.SHOW_BATTERY_PERCENT;
 import static android.provider.Settings.Secure.STATUS_BAR_BATTERY_STYLE;
+import static android.provider.Settings.Secure.STATUS_BAR_BIG_BATTERY_ICON;
 
 import android.animation.ArgbEvaluator;
 import android.app.ActivityManager;
@@ -86,6 +87,9 @@ public class BatteryMeterView extends LinearLayout implements
 
     private boolean mQsHeaderOrKeyguard;
 
+    private int mPercentStyle;
+    private int mBatteryIconStyle;
+    private boolean mLargeBatteryIcon;
     private boolean mAttached;
 
     private int mClockStyle = STYLE_CLOCK_RIGHT;
@@ -121,8 +125,7 @@ public class BatteryMeterView extends LinearLayout implements
         final MarginLayoutParams mlp = new MarginLayoutParams(
                 getResources().getDimensionPixelSize(R.dimen.status_bar_battery_icon_width),
                 getResources().getDimensionPixelSize(R.dimen.status_bar_battery_icon_height));
-        mlp.setMargins(0, 0, 0,
-                getResources().getDimensionPixelOffset(R.dimen.battery_margin_bottom));
+        mlp.setMargins(0, 0, 0, getResources().getDimensionPixelOffset(R.dimen.battery_margin_bottom));
         addView(mBatteryIconView, mlp);
 
         mEndPadding = res.getDimensionPixelSize(R.dimen.battery_level_padding_start);
@@ -293,11 +296,21 @@ public class BatteryMeterView extends LinearLayout implements
         boolean bigCircleBattery = mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_BIG_CIRCLE
                 || mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_BIG_DOTTED_CIRCLE;
 
-        int batteryHeight = res.getDimensionPixelSize(
-                bigCircleBattery ? R.dimen.status_bar_battery_circle_icon_height : R.dimen.status_bar_battery_icon_height);
-        int batteryWidth = res.getDimensionPixelSize(
-                bigCircleBattery ? R.dimen.status_bar_battery_circle_icon_width :R.dimen.status_bar_battery_icon_width);
+        int batteryHeight = mLargeBatteryIcon ?  
+			   res.getDimensionPixelSize(bigCircleBattery ? R.dimen.status_bar_battery_circle_icon_height : R.dimen.status_bar_battery_large_icon_height);
+			   res.getDimensionPixelSize(bigCircleBattery ? R.dimen.status_bar_battery_circle_icon_height : R.dimen.status_bar_battery_icon_height);
+        int batteryWidth = mLargeBatteryIcon ? 
+			   res.getDimensionPixelSize(bigCircleBattery ? R.dimen.status_bar_battery_circle_icon_width :R.dimen.status_bar_battery_large_icon_width);
+                           res.getDimensionPixelSize(bigCircleBattery ? R.dimen.status_bar_battery_circle_icon_width :R.dimen.status_bar_battery_icon_width);
         int marginBottom = res.getDimensionPixelSize(R.dimen.battery_margin_bottom);
+
+        if (mBatteryIconView != null) {
+            removeView(mBatteryIconView);
+            final MarginLayoutParams mlp = new MarginLayoutParams(
+                    (int) (batteryWidth * iconScaleFactor), (int) (batteryHeight * iconScaleFactor));
+            mlp.setMargins(0, 0, 0, marginBottom);
+            addView(mBatteryIconView, mlp);
+        }
 
         LinearLayout.LayoutParams scaledLayoutParams = new LinearLayout.LayoutParams(
                 (int) (batteryWidth * iconScaleFactor), (int) (batteryHeight * iconScaleFactor));
@@ -390,6 +403,7 @@ public class BatteryMeterView extends LinearLayout implements
         updatePercentText();
     }
 
+<<<<<<< HEAD
     public void updateSettings(boolean fromObserver) {
         mShowPercentText = Settings.System.getIntForUser(mContext.getContentResolver(),
                 SHOW_BATTERY_PERCENT, 1, mUser);
@@ -397,6 +411,8 @@ public class BatteryMeterView extends LinearLayout implements
                 STATUS_BAR_BATTERY_STYLE, BatteryMeterDrawableBase.BATTERY_STYLE_PORTRAIT, mUser);
         mClockStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.STATUSBAR_CLOCK_STYLE, STYLE_CLOCK_RIGHT, mUser);
+        mLargeBatteryIcon = Settings.Secure.getIntForUser(getContext().getContentResolver(),
+                STATUS_BAR_BIG_BATTERY_ICON, 0, mUser) != 0;
         if (fromObserver && mAttached) {
             updateBatteryStyle();
         }

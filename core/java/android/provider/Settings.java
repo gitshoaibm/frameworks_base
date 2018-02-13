@@ -9060,6 +9060,12 @@ public final class Settings {
         public static final String LOCK_QS_DISABLED = "lockscreen_qs_disabled";
 
         /**
+         * Display large battery icon.
+         * @hide
+         */
+        public static final String STATUS_BAR_BIG_BATTERY_ICON = "status_bar_big_battery_icon";
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear

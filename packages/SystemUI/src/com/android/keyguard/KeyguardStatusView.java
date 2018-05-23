@@ -489,6 +489,9 @@ public class KeyguardStatusView extends GridLayout implements
         if (lockClockFont == 11) {
             mClockView.setTypeface(Typeface.create("sans-serif-medium", Typeface.ITALIC));
         }
+        if (lockClockFont == 12) {
+            mClockView.setTypeface(Typeface.create("batman-sys", Typeface.NORMAL));
+        }
     }
 
     // DateFormat.getBestDateTimePattern is extremely expensive, and refresh is called often.

@@ -101,7 +101,7 @@
 
     <!-- Lockscren Fonts -->
     <family name="batman-sys">
-        <font weight="300" style="normal">batman-Regular.ttf</font>
+        <font weight="300" style="normal">batman.ttf</font>
     </family>
 
     <!-- fallback fonts -->

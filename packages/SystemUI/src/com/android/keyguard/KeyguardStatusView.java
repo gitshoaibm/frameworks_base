@@ -459,7 +459,6 @@ public class KeyguardStatusView extends GridLayout implements
         AlarmManager.AlarmClockInfo nextAlarm =
                 mAlarmManager.getNextAlarmClock(UserHandle.USER_CURRENT);
         boolean showAlarm = Settings.System.getIntForUser(resolver,
-        mShowAlarm = Settings.System.getIntForUser(resolver,
                 Settings.System.HIDE_LOCKSCREEN_ALARM, 1, UserHandle.USER_CURRENT) == 1;
         mShowClock = Settings.System.getIntForUser(resolver,
                 Settings.System.HIDE_LOCKSCREEN_CLOCK, 1, UserHandle.USER_CURRENT) == 1;

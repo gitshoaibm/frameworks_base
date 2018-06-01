@@ -115,6 +115,8 @@ public class KeyguardStatusView extends GridLayout implements
     private boolean mShowDate;
     private int mClockSelection;
     private int mDateSelection;
+    private int mClockFontColor;
+    private String FontColor; 
 
     private KeyguardUpdateMonitorCallback mInfoCallback = new KeyguardUpdateMonitorCallback() {
 
@@ -288,8 +290,8 @@ public class KeyguardStatusView extends GridLayout implements
             mClockView.setFormat12Hour(Patterns.clockView12);
             mClockView.setFormat24Hour(Patterns.clockView24);
         } else if (mClockSelection == 1) {
-            mClockView.setFormat12Hour(Html.fromHtml("<font color='red'><strong>hh</strong></font>mm"));
-            mClockView.setFormat24Hour(Html.fromHtml("<font color='red'><strong>kk</strong></font>mm"));
+            mClockView.setFormat12Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>hh</strong></font>mm"));
+            mClockView.setFormat24Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>kk</strong></font>mm"));
         } else if (mClockSelection == 5) {
             mClockView.setFormat12Hour(Html.fromHtml("<strong>hh</strong><br>mm"));
             mClockView.setFormat24Hour(Html.fromHtml("<strong>kk</strong><br>mm"));
@@ -518,6 +520,8 @@ public class KeyguardStatusView extends GridLayout implements
                 Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT);
         mDateSelection = Settings.System.getIntForUser(resolver,
                 Settings.System.LOCKSCREEN_DATE_SELECTION, 0, UserHandle.USER_CURRENT);
+        mClockFontColor = Settings.System.getIntForUser(resolver,
+                Settings.System.LOCK_CLOCK_FONTS_COLOR, 0, UserHandle.USER_CURRENT);
 
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mKeyguardStatusArea.getLayoutParams();
         switch (mClockSelection) {
@@ -602,6 +606,21 @@ public class KeyguardStatusView extends GridLayout implements
                 break;
         }
 
+        switch (mClockFontColor) {
+            case 0: // default
+            default:
+		FontColor ="white";
+                break; 
+            case 1: // semi-transparent box
+                FontColor ="blue";
+                break;
+            case 2: // semi-transparent box (round)
+                FontColor ="green";
+                break;
+            case 3: // semi-transparent box (round)
+                FontColor ="red";
+                break;
+        }
         updateVisibilities();
         updateDozeVisibleViews();
     }

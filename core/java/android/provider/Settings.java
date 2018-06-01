@@ -5331,6 +5331,12 @@ public final class Settings {
         public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
 
         /**
+         * Change fonts color for the system lockscreen clock widget   
+         *
+         * @hide
+         */
+        public static final String LOCK_CLOCK_FONTS_COLOR = "lock_clock_fonts_color";
+        /**
          * Select which lockscreen date style to display
          * @hide
          */

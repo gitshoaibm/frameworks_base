@@ -308,7 +308,7 @@ public class KeyguardStatusView extends GridLayout implements
 
         refreshTime();
         refreshAlarmStatus(nextAlarm);
-        updateSettings(false);
+        updateSettings();
         refreshLockFont();
     }
 
@@ -619,6 +619,15 @@ public class KeyguardStatusView extends GridLayout implements
                 break;
             case 3: // semi-transparent box (round)
                 FontColor ="red";
+                break;
+            case 4: // semi-transparent box (round)
+                FontColor ="grey";
+                break;
+            case 5: // semi-transparent box (round)
+                FontColor ="maroon";
+                break;
+            case 6: // semi-transparent box (round)
+                FontColor ="olive";
                 break;
         }
         updateVisibilities();

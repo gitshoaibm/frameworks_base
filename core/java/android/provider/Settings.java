@@ -5107,6 +5107,8 @@ public final class Settings {
          * @hide
          */
         public static final String HIDE_LOCKSCREEN_DATE = "hide_lockscreen_date";
+	public static final String FONT_COLOR_CAT = "font_color_cat";
+        public static final String LOCK_CLOCK_FONT_DY = "lock_clock_font_dy";
 
         /**
          * Hide lockscreen clock

@@ -116,7 +116,8 @@ public class KeyguardStatusView extends GridLayout implements
     private int mClockSelection;
     private int mDateSelection;
     private int mClockFontColor;
-    private String FontColor; 
+    private int mFontColor;
+    private int FontColor; 
 
     private KeyguardUpdateMonitorCallback mInfoCallback = new KeyguardUpdateMonitorCallback() {
 
@@ -522,6 +523,8 @@ public class KeyguardStatusView extends GridLayout implements
                 Settings.System.LOCKSCREEN_DATE_SELECTION, 0, UserHandle.USER_CURRENT);
         mClockFontColor = Settings.System.getIntForUser(resolver,
                 Settings.System.LOCK_CLOCK_FONTS_COLOR, 0, UserHandle.USER_CURRENT);
+        FontColor = Settings.System.getIntForUser(resolver,
+                Settings.System.LOCK_CLOCK_FONT_DY, 0xFFFF0000, UserHandle.USER_CURRENT);
 
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mKeyguardStatusArea.getLayoutParams();
         switch (mClockSelection) {
@@ -606,7 +609,7 @@ public class KeyguardStatusView extends GridLayout implements
                 break;
         }
 
-        switch (mClockFontColor) {
+/*        switch (mClockFontColor) {
             case 0: // default
             default:
 		FontColor ="white";
@@ -630,6 +633,7 @@ public class KeyguardStatusView extends GridLayout implements
                 FontColor ="olive";
                 break;
         }
+*/
         updateVisibilities();
         updateDozeVisibleViews();
     }

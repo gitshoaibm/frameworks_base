@@ -115,7 +115,6 @@ public class KeyguardStatusView extends GridLayout implements
     private boolean mShowDate;
     private int mClockSelection;
     private int mDateSelection;
-    private int mClockFontColor;
     private int mFontColor;
     private int FontColor; 
 
@@ -609,31 +608,6 @@ public class KeyguardStatusView extends GridLayout implements
                 break;
         }
 
-/*        switch (mClockFontColor) {
-            case 0: // default
-            default:
-		FontColor ="white";
-                break; 
-            case 1: // semi-transparent box
-                FontColor ="blue";
-                break;
-            case 2: // semi-transparent box (round)
-                FontColor ="green";
-                break;
-            case 3: // semi-transparent box (round)
-                FontColor ="red";
-                break;
-            case 4: // semi-transparent box (round)
-                FontColor ="grey";
-                break;
-            case 5: // semi-transparent box (round)
-                FontColor ="maroon";
-                break;
-            case 6: // semi-transparent box (round)
-                FontColor ="olive";
-                break;
-        }
-*/
         updateVisibilities();
         updateDozeVisibleViews();
     }

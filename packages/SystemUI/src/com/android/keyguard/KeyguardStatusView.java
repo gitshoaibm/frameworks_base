@@ -287,17 +287,17 @@ public class KeyguardStatusView extends GridLayout implements
         mDateView.setDatePattern(Patterns.dateViewSkel);
 
         if (mClockSelection == 0) {
-            mClockView.setFormat12Hour(Patterns.clockView12);
-            mClockView.setFormat24Hour(Patterns.clockView24);
+            mClockView.setFormat12Hour(Html.fromHtml("<font color='"+FontColor+"'>Patterns.clockView12</font>"));
+            mClockView.setFormat24Hour(Html.fromHtml("<font color='"+FontColor+"'>Patterns.clockView24</font>"));
         } else if (mClockSelection == 1) {
-            mClockView.setFormat12Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>hh</strong></font>mm"));
+            mClockView.setFormat12Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>h</strong></font>mm"));
             mClockView.setFormat24Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>kk</strong></font>mm"));
         } else if (mClockSelection == 5) {
-            mClockView.setFormat12Hour(Html.fromHtml("<strong>hh</strong><br>mm"));
-            mClockView.setFormat24Hour(Html.fromHtml("<strong>kk</strong><br>mm"));
+            mClockView.setFormat12Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>hh</strong></font><br>mm"));
+            mClockView.setFormat24Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>kk</strong></font><br>mm"));
         } else {
-            mClockView.setFormat12Hour("hh\nmm");
-            mClockView.setFormat24Hour("kk\nmm");
+            mClockView.setFormat12Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>h</strong></font>\nmm"));
+            mClockView.setFormat24Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>kk</strong></font>\nmm"));
         }
     }
 
@@ -520,8 +520,6 @@ public class KeyguardStatusView extends GridLayout implements
                 Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT);
         mDateSelection = Settings.System.getIntForUser(resolver,
                 Settings.System.LOCKSCREEN_DATE_SELECTION, 0, UserHandle.USER_CURRENT);
-        mClockFontColor = Settings.System.getIntForUser(resolver,
-                Settings.System.LOCK_CLOCK_FONTS_COLOR, 0, UserHandle.USER_CURRENT);
         FontColor = Settings.System.getIntForUser(resolver,
                 Settings.System.LOCK_CLOCK_FONT_DY, 0xFFFF0000, UserHandle.USER_CURRENT);
 

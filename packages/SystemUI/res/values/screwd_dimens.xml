@@ -75,6 +75,4 @@
     <!-- Big clock dozing -->
     <dimen name="dozing_big_clock_padding" format="float">0.38</dimen>
 
-    <dimen name="status_bar_battery_large_icon_width">20.5dp</dimen>
-    <dimen name="status_bar_battery_large_icon_height">20.5dp</dimen>
 </resources>

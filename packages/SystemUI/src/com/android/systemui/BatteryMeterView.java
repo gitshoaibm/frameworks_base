@@ -17,7 +17,7 @@ package com.android.systemui;
 
 import static android.provider.Settings.System.SHOW_BATTERY_PERCENT;
 import static android.provider.Settings.Secure.STATUS_BAR_BATTERY_STYLE;
-import static android.provider.Settings.Secure.STATUS_BAR_BIG_BATTERY_ICON;
+import static android.provider.Settings.System.STATUS_BAR_BIG_BATTERY_ICON;
 
 import android.animation.ArgbEvaluator;
 import android.app.ActivityManager;
@@ -410,8 +410,8 @@ public class BatteryMeterView extends LinearLayout implements
                 STATUS_BAR_BATTERY_STYLE, BatteryMeterDrawableBase.BATTERY_STYLE_PORTRAIT, mUser);
         mClockStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.STATUSBAR_CLOCK_STYLE, STYLE_CLOCK_RIGHT, mUser);
-        mLargeBatteryIcon = Settings.Secure.getIntForUser(getContext().getContentResolver(),
-                STATUS_BAR_BIG_BATTERY_ICON, 0, mUser) != 0;
+        mLargeBatteryIcon = Settings.System.getIntForUser(mContext.getContentResolver(),
+                STATUS_BAR_BIG_BATTERY_ICON, 0, mUser);
         if (fromObserver && mAttached) {
             updateBatteryStyle();
         }

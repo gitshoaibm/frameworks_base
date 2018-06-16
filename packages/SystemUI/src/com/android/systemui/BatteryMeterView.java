@@ -297,10 +297,10 @@ public class BatteryMeterView extends LinearLayout implements
                 || mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_BIG_DOTTED_CIRCLE;
 
         int batteryHeight = mLargeBatteryIcon ?  
-			   res.getDimensionPixelSize(bigCircleBattery ? R.dimen.status_bar_battery_circle_icon_height : R.dimen.status_bar_battery_large_icon_height);
+			   res.getDimensionPixelSize(bigCircleBattery ? R.dimen.status_bar_battery_circle_icon_height : R.dimen.status_bar_battery_large_icon_height):
 			   res.getDimensionPixelSize(bigCircleBattery ? R.dimen.status_bar_battery_circle_icon_height : R.dimen.status_bar_battery_icon_height);
         int batteryWidth = mLargeBatteryIcon ? 
-			   res.getDimensionPixelSize(bigCircleBattery ? R.dimen.status_bar_battery_circle_icon_width :R.dimen.status_bar_battery_large_icon_width);
+			   res.getDimensionPixelSize(bigCircleBattery ? R.dimen.status_bar_battery_circle_icon_width :R.dimen.status_bar_battery_large_icon_width):
                            res.getDimensionPixelSize(bigCircleBattery ? R.dimen.status_bar_battery_circle_icon_width :R.dimen.status_bar_battery_icon_width);
         int marginBottom = res.getDimensionPixelSize(R.dimen.battery_margin_bottom);
 
@@ -403,7 +403,6 @@ public class BatteryMeterView extends LinearLayout implements
         updatePercentText();
     }
 
-<<<<<<< HEAD
     public void updateSettings(boolean fromObserver) {
         mShowPercentText = Settings.System.getIntForUser(mContext.getContentResolver(),
                 SHOW_BATTERY_PERCENT, 1, mUser);

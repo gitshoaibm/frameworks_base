@@ -116,6 +116,8 @@ public class KeyguardStatusView extends GridLayout implements
     private boolean mShowDate;
     private int mClockSelection;
     private int mDateSelection;
+    private int mFontColor;
+    private int FontColor;
 
     private KeyguardUpdateMonitorCallback mInfoCallback = new KeyguardUpdateMonitorCallback() {
 
@@ -289,11 +291,11 @@ public class KeyguardStatusView extends GridLayout implements
             mClockView.setFormat12Hour(Patterns.clockView12);
             mClockView.setFormat24Hour(Patterns.clockView24);
         } else if (mClockSelection == 1) {
-            mClockView.setFormat12Hour(Html.fromHtml("<strong>h</strong>mm"));
-            mClockView.setFormat24Hour(Html.fromHtml("<strong>kk</strong>mm"));
+            mClockView.setFormat12Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>h</strong></font>mm"));
+            mClockView.setFormat24Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>kk</strong></font>mm"));
         } else if (mClockSelection == 5) {
-            mClockView.setFormat12Hour(Html.fromHtml("<strong>hh</strong><br>mm"));
-            mClockView.setFormat24Hour(Html.fromHtml("<strong>kk</strong><br>mm"));
+            mClockView.setFormat12Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>hh</strong></font><br>mm"));
+            mClockView.setFormat24Hour(Html.fromHtml("<font color='"+FontColor+"'><strong>kk</strong></font><br>mm"));
         } else {
             mClockView.setFormat12Hour("hh\nmm");
             mClockView.setFormat24Hour("kk\nmm");
@@ -519,6 +521,8 @@ public class KeyguardStatusView extends GridLayout implements
                 Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT);
         mDateSelection = Settings.System.getIntForUser(resolver,
                 Settings.System.LOCKSCREEN_DATE_SELECTION, 0, UserHandle.USER_CURRENT);
+        FontColor = Settings.System.getIntForUser(resolver,
+                Settings.System.LOCK_CLOCK_FONT_DY, 0xFFFF0000, UserHandle.USER_CURRENT);
 
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mKeyguardStatusArea.getLayoutParams();
         switch (mClockSelection) {

@@ -91,7 +91,7 @@ public class BatteryMeterView extends LinearLayout implements
     private int mBatteryIconStyle;
     private boolean mLargeBatteryIcon;
     private boolean mAttached;
-
+    
     private int mClockStyle = STYLE_CLOCK_RIGHT;
     public static final int STYLE_CLOCK_RIGHT = 0;
     public static final int STYLE_CLOCK_LEFT = 1;
@@ -377,14 +377,19 @@ public class BatteryMeterView extends LinearLayout implements
                     addView(mBatteryIconView, mlp);
                 }
                 break;
+	   
             default:
                 mDrawable.setMeterStyle(style);
                 if (mBatteryIconView == null) {
                     mBatteryIconView = new ImageView(mContext);
                     mBatteryIconView.setImageDrawable(mDrawable);
-                    final MarginLayoutParams mlp = new MarginLayoutParams(
-                            getResources().getDimensionPixelSize(R.dimen.status_bar_battery_icon_width),
-                            getResources().getDimensionPixelSize(R.dimen.status_bar_battery_icon_height));
+                    final MarginLayoutParams mlp = mLargeBatteryIcon ? 
+			    new MarginLayoutParams(
+			    getResources().getDimensionPixelSize(R.dimen.status_bar_battery_icon_width),
+                            getResources().getDimensionPixelSize(R.dimen.status_bar_battery_icon_height)):
+                            new MarginLayoutParams(
+                            getResources().getDimensionPixelSize(R.dimen.status_bar_battery_large_icon_width),
+                            getResources().getDimensionPixelSize(R.dimen.status_bar_battery_large_icon_height));
                     mlp.setMargins(0, 0, 0, getResources().getDimensionPixelOffset(R.dimen.battery_margin_bottom));
                     addView(mBatteryIconView, mlp);
                 }

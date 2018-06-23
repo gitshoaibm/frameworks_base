@@ -309,7 +309,7 @@ public class KeyguardStatusView extends GridLayout implements
 
         refreshTime();
         refreshAlarmStatus(nextAlarm);
-        updateSettings(false);
+        updateSettings();
         refreshLockFont();
     }
 
